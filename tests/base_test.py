@@ -2,5 +2,5 @@ import unittest
 
 
 class BaseTestCase(unittest.TestCase):
-    def setUp(self):
-        pass
+    def test_(self):
+        self.assertEqual(0, 0)
