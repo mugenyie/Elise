@@ -31,7 +31,7 @@ class Testing:
     """
     TESTING = True
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_TEST_URL')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_TEST_URL') or "postgresql://elise:Elise1*@127.0.0.1:5432/elise_test_db"
     SQLALCHEMY_TRACK_MODIFICATIONS=False
 
 app_config = {
