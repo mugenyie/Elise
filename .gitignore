@@ -1,3 +1,4 @@
+.env
 eliseEnv/
 .vscode
 __pycache__/
