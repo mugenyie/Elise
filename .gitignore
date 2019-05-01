@@ -1,0 +1,4 @@
+eliseEnv/
+.vscode
+.pytest_cache
+.env
