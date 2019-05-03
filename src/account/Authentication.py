@@ -4,7 +4,7 @@ import os
 import datetime
 from flask import json, Response, request, g
 from functools import wraps
-from ..account.models.UserModel import UserModel
+from .models.AccountModel import AccountModel
 
 
 class Auth():
@@ -59,13 +59,13 @@ class Auth():
     """
     @wraps(func)
     def decorated_auth(*args, **kwargs):
-      if 'api-token' not in request.headers:
+      if 'auth_token' not in request.headers:
         return Response(
           mimetype="application/json",
           response=json.dumps({'error': 'Authentication token is not available, please login to get one'}),
           status=400
         )
-      token = request.headers.get('api-token')
+      token = request.headers.get('auth_token')
       data = Auth.decode_token(token)
       if data['error']:
         return Response(
@@ -75,7 +75,7 @@ class Auth():
         )
         
       user_id = data['data']['user_id']
-      check_user = UserModel.get_one_user(user_id)
+      check_user = AccountModel.get_one_user(user_id)
       if not check_user:
         return Response(
           mimetype="application/json",

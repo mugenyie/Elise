@@ -3,11 +3,11 @@
 from flask import Flask
 
 from .config import app_config
-from .account.models import db, bcrypt
+from .shared.models import db, bcrypt
 
-# import user_api blueprint
-from .account.views.UserView import user_api as user_blueprint
-from .account.views.BlogpostView import blogpost_api as blogpost_blueprint
+# import accounts blueprint
+from .account.apiviews.AccountView import account_api as account_blueprint
+from .account.apiviews.BusinessView import business_api as business_blueprint
 
 
 def create_app(env_name):
@@ -24,8 +24,8 @@ def create_app(env_name):
   bcrypt.init_app(app)
   db.init_app(app)
 
-  app.register_blueprint(user_blueprint, url_prefix='/api/v1/users')
-  app.register_blueprint(blogpost_blueprint, url_prefix='/api/v1/blogposts')
+  app.register_blueprint(account_blueprint, url_prefix='/api/v1/accounts')
+  app.register_blueprint(business_blueprint, url_prefix='/api/v1/businesses')
 
   @app.route('/', methods=['GET'])
   def index():
