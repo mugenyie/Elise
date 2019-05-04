@@ -1,4 +1,4 @@
-import json
+from flask import json, jsonify
 from .BaseTestCase import BaseTestCase
 
 class accountsTest(BaseTestCase):
