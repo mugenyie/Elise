@@ -49,4 +49,3 @@ class RestClient:
             return requests.get(url, params=request.params, headers=headers)
         if request.method == "put":
             return requests.put(url, data=payload, headers=headers)
-

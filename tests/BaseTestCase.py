@@ -13,10 +13,11 @@ class BaseTestCase(unittest.TestCase):
         self.app = create_app("testing")
         self.client = self.app.test_client()
         self.user = {
-        'name': 'Emmanuel C. Mugenyi',
-        'email': 'ecmugenyi@gmail.com',
-        'password': '1234',
-        'phonenumber': '256787744279'
+            'username':'columbus',
+            'name': 'Emmanuel C. Mugenyi',
+            'email': 'ecmugenyi@gmail.com',
+            'password': '1234',
+            'phonenumber': '256787744279'
         }
 
         with self.app.app_context():
