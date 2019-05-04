@@ -14,6 +14,7 @@ class AccountModel(BaseModel):
   # table name
   __tablename__ = 'accounts'
 
+  username = db.Column(db.String(128), nullable=False, unique=True)
   name = db.Column(db.String(128), nullable=False)
   email = db.Column(db.String(128), unique=True, nullable=False)
   password = db.Column(db.String(128), nullable=False)
@@ -29,6 +30,7 @@ class AccountModel(BaseModel):
     Class constructor
     """
     BaseModel.__init__(self, data)
+    self.username = data.get('username')
     self.name = data.get('name')
     self.email = data.get('email')
     self.password = self.__generate_hash(data.get('password'))
@@ -64,6 +66,10 @@ class AccountModel(BaseModel):
   @staticmethod
   def get_user_by_email(value):
     return AccountModel.query.filter_by(email=value).first()
+
+  @staticmethod
+  def get_user_by_usernamel(value):
+    return AccountModel.query.filter_by(username=value).first()
   
   @staticmethod
   def get_user_by_phonenumber(value):
@@ -76,10 +82,11 @@ class AccountModel(BaseModel):
     return bcrypt.check_password_hash(self.password, password)
   
   def __repr__(self):
-    return '<Account {}>'.format(self.name)
+    return '<Account {}>'.format(self.username)
 
 class AccountSchema(Schema):
   id = fields.UUID(dump_only=True)
+  username = fields.Str(required=True)
   name = fields.Str(required=True)
   email = fields.Email(required=True)
   password = fields.Str(required=True, load_only=True)

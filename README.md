@@ -5,6 +5,7 @@
 # User Account API
 Create Account - POST api/v1/accounts/
 {
+	"username":"",
 	"name":"",
 	"email":"",
 	"password":"",
