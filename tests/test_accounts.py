@@ -118,3 +118,6 @@ class accountsTest(BaseTestCase):
     auth_token = json.loads(res.data).get('auth_token')
     res = self.client.delete('/api/v1/accounts/me', headers={'Content-Type': 'application/json', 'auth_token': auth_token})
     self.assertEqual(res.status_code, 204)
+
+  if __name__ == '__main__':
+    unittest.main()

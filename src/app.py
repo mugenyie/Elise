@@ -8,6 +8,7 @@ from .shared.models import db, bcrypt
 # import accounts blueprint
 from .account.apiviews.AccountView import account_api as account_blueprint
 from .account.apiviews.BusinessView import business_api as business_blueprint
+from .products.sms.apiview import sms_api as sms_blueprint
 
 
 def create_app(env_name):
@@ -26,6 +27,7 @@ def create_app(env_name):
 
   app.register_blueprint(account_blueprint, url_prefix='/api/v1/accounts')
   app.register_blueprint(business_blueprint, url_prefix='/api/v1/businesses')
+  app.register_blueprint(sms_blueprint, url_prefix='/api/v1/sms')
 
   @app.route('/', methods=['GET'])
   def index():

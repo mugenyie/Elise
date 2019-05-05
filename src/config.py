@@ -34,6 +34,16 @@ class Testing:
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_TEST_URL') or "postgresql://elise:Elise1*@127.0.0.1:5432/elise_test_db"
     SQLALCHEMY_TRACK_MODIFICATIONS=False
 
+class CustomConfigs:
+    #Africa's Talking
+    AFRICASTALKING_PRODUCTION_BASEURL = 'https://api.africastalking.com'
+    AFRICASTALKING_SANDBOX_BASEURL = 'https://api.sandbox.africastalking.com'
+    AFRICASTALKING_API_KEY=os.getenv('AFRICASTALKING_API_KEY')
+    AFRICASTALKING_PRODUCTION_APPNAME=os.getenv('AFRICASTALKING_PRODUCTION_APPNAME')
+    AFRICASTALKING_PRODUCTION_USERNAME=os.getenv('AFRICASTALKING_PRODUCTION_USERNAME')
+    AFRICASTALKING_SANDBOX_APPNAME=os.getenv('AFRICASTALKING_SANDBOX_APPNAME')
+    AFRICASTALKING_SANDBOX_USERNAME=os.getenv('AFRICASTALKING_SANDBOX_USERNAME')
+
 app_config = {
     'development': Development,
     'production': Production,
