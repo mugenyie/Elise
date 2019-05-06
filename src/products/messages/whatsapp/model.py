@@ -1,18 +1,16 @@
 from marshmallow import fields, Schema
-from ...shared.models import db
-from ...shared.models.BaseModel import BaseModel
-from ...providers.africastalking.SMS import send_sms
+from ....shared.models import db
+from ....providers.twilio.TwilioService import TwilioService
 
-
-class SMSModel(BaseModel):
+class WhatsappModel():
     
     def __init__(self, data):
         self.to = data.get('to')
         self.message = data.get('message')
     
     def send(self):
-        return send_sms(self.to, self.message)
+        return TwilioService().send_whatsapp(self.to, self.message)
 
-class SMSSchema(Schema):
+class WhatsappSchema(Schema):
     to = fields.Str(required=True)
     message = fields.Str(required=True)
