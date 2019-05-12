@@ -1,4 +1,7 @@
 eliseEnv/
+tests/
+migrations/
+src/
 .vscode
 .pytest_cache
 .env
