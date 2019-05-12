@@ -2,6 +2,7 @@ import unittest
 import os
 import json
 from src.app import create_app, db
+from src.account.models.AccountModel import AccountModel
 
 
 class BaseTestCase(unittest.TestCase):
@@ -12,13 +13,20 @@ class BaseTestCase(unittest.TestCase):
         """
         self.app = create_app("testing")
         self.client = self.app.test_client()
-        self.user = {
-            'username':'columbus',
-            'name': 'Emmanuel C. Mugenyi',
-            'email': 'ecmugenyi@gmail.com',
-            'password': '1234',
-            'phonenumber': '256787744279'
-        }
+        self.user = AccountModel(
+            username = 'columbus',
+            name = 'Emmanuel C. Mugenyi',
+            email = 'ecmugenyi@gmail.com',
+            password = '1234',
+            phonenumber = '256787744279'
+        )
+        # {
+        #     'username':'columbus',
+        #     'name': 'Emmanuel C. Mugenyi',
+        #     'email': 'ecmugenyi@gmail.com',
+        #     'password': '1234',
+        #     'phonenumber': '256787744279'
+        # }
 
         with self.app.app_context():
             # create all tables
